@@ -9,9 +9,9 @@ import {
 } from "react-native";
 
 const App = () => {
-    const [task, setTask] = useState("");
-    const [tasks, setTasks] = useState([]);
-    const [editIndex, setEditIndex] = useState(-1);
+    const [task, setTask] = useState<string>("");
+    const [tasks, setTasks] = useState<string[]>([]);
+    const [editIndex, setEditIndex] = useState<number>(-1);
 
     const handleAddTask = () => {
         if (task) {
@@ -29,33 +29,27 @@ const App = () => {
         }
     };
 
-    const handleEditTask = (index) => {
+    const handleEditTask = (index: number) => {
         const taskToEdit = tasks[index];
         setTask(taskToEdit);
         setEditIndex(index);
     };
 
-    const handleDeleteTask = (index) => {
+    const handleDeleteTask = (index: number) => {
         const updatedTasks = [...tasks];
         updatedTasks.splice(index, 1);
         setTasks(updatedTasks);
     };
 
-    const renderItem = ({ item, index }) => (
+    const renderItem = ({ item, index }: { item: string, index: number }) => (
         <View style={styles.task}>
-            <Text
-                style={styles.itemList}>{item}</Text>
-            <View
-                style={styles.taskButtons}>
-                <TouchableOpacity
-                    onPress={() => handleEditTask(index)}>
-                    <Text
-                        style={styles.editButton}>Edit</Text>
+            <Text style={styles.itemList}>{item}</Text>
+            <View style={styles.taskButtons}>
+                <TouchableOpacity onPress={() => handleEditTask(index)}>
+                    <Text style={styles.editButton}>Edit</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => handleDeleteTask(index)}>
-                    <Text
-                        style={styles.deleteButton}>Delete</Text>
+                <TouchableOpacity onPress={() => handleDeleteTask(index)}>
+                    <Text style={styles.deleteButton}>Delete</Text>
                 </TouchableOpacity>
             </View>
         </View>
