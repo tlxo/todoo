@@ -48,11 +48,15 @@ const App = () => {
             <View
                 style={styles.taskButtons}>
                 <TouchableOpacity
+                    accessibilityRole="button"
+                    accessibilityHint="Edit the task"
                     onPress={() => handleEditTask(index)}>
                     <Text
                         style={styles.editButton}>Edit</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
+                        accessibilityRole="button"
+                        accessibilityHint="Delete the task"
                     onPress={() => handleDeleteTask(index)}>
                     <Text
                         style={styles.deleteButton}>Delete</Text>
@@ -63,15 +67,18 @@ const App = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}>Todoo</Text>
-            <Text style={styles.title}>Keep your mind in check</Text>
+            <Text role="heading" style={styles.heading}>Todoo</Text>
+            <Text role="heading" style={styles.title}>Keep your mind in check</Text>
             <TextInput
+                accessibilityLabel="Enter task"
                 style={styles.input}
                 placeholder="Enter task"
                 value={task}
                 onChangeText={(text) => setTask(text)}
             />
             <TouchableOpacity
+                accessibilityRole="button"
+                accessibilityHint="Update the task"
                 style={styles.addButton}
                 onPress={handleAddTask}>
                 <Text style={styles.addButtonText}>
@@ -79,6 +86,7 @@ const App = () => {
                 </Text>
             </TouchableOpacity>
             <FlatList
+                accessibilityRole="list"
                 data={tasks}
                 renderItem={renderItem}
                 keyExtractor={(item, index) => index.toString()}
@@ -109,7 +117,7 @@ const styles = StyleSheet.create({
         borderColor: "#ccc",
         padding: 10,
         marginBottom: 10,
-        borderRadius: 10,
+        borderRadius: 25,
         fontSize: 18,
     },
     addButton: {
